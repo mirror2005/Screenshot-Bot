@@ -212,7 +212,7 @@ async def screenshot_fn(c, m):
     
     if Config.TRACK_CHANNEL:
         tr_msg = await media_msg.forward(Config.TRACK_CHANNEL)
-        await tr_msg.reply_text(f"User id: `{chat_id}`")
+        await tr_msg.reply_text(f"About User: [{m.from_user.first_name}](tg://user?id={chat_id})")
     
     if media_msg.media:
         typ = 1
@@ -235,7 +235,7 @@ async def screenshot_fn(c, m):
         if isinstance(duration, str):
             await edit_message_text(m, text="😟 Sorry! I cannot open the file.")
             l = await media_msg.forward(Config.LOG_CHANNEL)
-            await l.reply_text(f'stream link : {file_link}\n\nRequested screenshots: {num_screenshots} \n\n{duration}', True)
+            await l.reply_text(f'#ERROR_SS: \n\nStream Link : {file_link}\n\nRequested screenshots: {num_screenshots} \n\n{duration}', True)
             c.CURRENT_PROCESSES[chat_id] -= 1
             return
 
@@ -289,7 +289,7 @@ async def screenshot_fn(c, m):
                 error_file = f"{uid}-errors.txt"
                 with open(error_file, 'w') as f:
                     f.write(ffmpeg_errors)
-                await l.reply_document(error_file, caption=f"stream link : {file_link}\n\n{num_screenshots} screenshots where requested and Screen shots where not generated.")
+                await l.reply_document(error_file, caption=f"#ERROR_SS: \n\nStream Link : {file_link}\n\n{num_screenshots} screenshots where requested but Screenshots where not generated!")
                 os.remove(error_file)
             else:
                 await l.reply_text(f'stream link : {file_link}\n\n{num_screenshots} screenshots where requested and Screen shots where not generated.', True)
@@ -306,7 +306,7 @@ async def screenshot_fn(c, m):
         else:
             await media_msg.reply_media_group(screenshots, True)
         
-        await edit_message_text(m, text=f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}\n\n\n\n©️ @odbots  @TGBotsZ  @InFoTelGroup')
+        await edit_message_text(m, text=f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}')
         c.CURRENT_PROCESSES[chat_id] -= 1
         
     except:
@@ -314,7 +314,7 @@ async def screenshot_fn(c, m):
         await edit_message_text(m, text='😟 Sorry! Screenshot generation failed possibly due to some infrastructure failure 😥.')
         
         l = await media_msg.forward(Config.LOG_CHANNEL)
-        await l.reply_text(f'{num_screenshots} screenshots where requested and some error occoured\n\n{traceback.format_exc()}', True)
+        await l.reply_text(f'#ERROR_SS: \n\n{num_screenshots} screenshots where requested and some error occoured!\n\n{traceback.format_exc()}', True)
         c.CURRENT_PROCESSES[chat_id] -= 1
 
 
@@ -340,7 +340,7 @@ async def sample_fn(c, m):
     
     if Config.TRACK_CHANNEL:
         tr_msg = await media_msg.forward(Config.TRACK_CHANNEL)
-        await tr_msg.reply_text(f"User id: `{chat_id}`")
+        await tr_msg.reply_text(f"About User: [{m.from_user.first_name}](tg://user?id={chat_id})")
     
     if media_msg.media:
         typ = 1
@@ -363,7 +363,7 @@ async def sample_fn(c, m):
         if isinstance(duration, str):
             await edit_message_text(m, text="😟 Sorry! I cannot open the file.")
             l = await media_msg.forward(Config.LOG_CHANNEL)
-            await l.reply_text(f'stream link : {file_link}\n\nSample video requested\n\n{duration}', True)
+            await l.reply_text(f'#ERROR_SS: \n\nStream Link : {file_link}\n\nSample video requested! But cannot open the file!\n\n{duration}', True)
             c.CURRENT_PROCESSES[chat_id] -= 1
             return
         
@@ -384,7 +384,7 @@ async def sample_fn(c, m):
             await edit_message_text(m, text='😟 Sorry! Sample video generation failed possibly due to some infrastructure failure 😥.')
             
             l = await media_msg.forward(Config.LOG_CHANNEL)
-            await l.reply_text(f'stream link : {file_link}\n\n duration {sample_duration} sample video generation failed\n\n{output[1].decode()}', True)
+            await l.reply_text(f'#ERROR_SS: \n\nStream Link: {file_link}\n\n Duration {sample_duration} Sample video generation failed!\n\n{output[1].decode()}', True)
             c.CURRENT_PROCESSES[chat_id] -= 1
             return
         
@@ -403,7 +403,7 @@ async def sample_fn(c, m):
                 supports_streaming=True
             )
         
-        await edit_message_text(m, text=f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}\n\n\n\n©️ @odbots  @TGBotsZ  @InFoTelGroup')
+        await edit_message_text(m, text=f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}')
         c.CURRENT_PROCESSES[chat_id] -= 1
         
     except:
@@ -411,7 +411,7 @@ async def sample_fn(c, m):
         await edit_message_text(m, text='😟 Sorry! Sample video generation failed possibly due to some infrastructure failure 😥.')
         
         l = await media_msg.forward(Config.LOG_CHANNEL)
-        await l.reply_text(f'sample video requested and some error occoured\n\n{traceback.format_exc()}', True)
+        await l.reply_text(f'#ERROR_SS: \n\nSample video requested and some error occoured!\n\n{traceback.format_exc()}', True)
         c.CURRENT_PROCESSES[chat_id] -= 1
 
 
@@ -462,7 +462,7 @@ async def trim_fn(c, m):
     
     if Config.TRACK_CHANNEL:
         tr_msg = await media_msg.forward(Config.TRACK_CHANNEL)
-        await tr_msg.reply_text(f"User id: `{chat_id}`")
+        await tr_msg.reply_text(f"About User: [{m.from_user.first_name}](tg://user?id={chat_id})")
     
     if media_msg.media:
         typ = 1
@@ -485,7 +485,7 @@ async def trim_fn(c, m):
         if isinstance(duration, str):
             await snt.edit_text("😟 Sorry! I cannot open the file.")
             l = await media_msg.forward(Config.LOG_CHANNEL)
-            await l.reply_text(f'stream link : {file_link}\n\ntrim video requested\n\n{start}:{end}', True)
+            await l.reply_text(f'#ERROR_SS: Stream Link : {file_link}\n\ntrim video requested!\n\n{start}:{end}', True)
             c.CURRENT_PROCESSES[chat_id] -= 1
             return
         
@@ -505,7 +505,7 @@ async def trim_fn(c, m):
             await snt.edit_text('😟 Sorry! video trimming failed possibly due to some infrastructure failure 😥.')
             
             l = await media_msg.forward(Config.LOG_CHANNEL)
-            await l.reply_text(f'stream link : {file_link}\n\nVideo trimm failed. **{start}:{end}**\n\n{output[1].decode()}', True)
+            await l.reply_text(f'#ERROR_SS: Stream Link : {file_link}\n\nVideo trimm failed! **{start}:{end}**\n\n{output[1].decode()}', True)
             c.CURRENT_PROCESSES[chat_id] -= 1
             return
         
@@ -524,7 +524,7 @@ async def trim_fn(c, m):
             supports_streaming=True
         )
         
-        await snt.edit_text(f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}\n\n\n\n©️ @odbots  @TGBotsZ  @InFoTelGroup')
+        await snt.edit_text(f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}')
         c.CURRENT_PROCESSES[chat_id] -= 1
         
     except:
@@ -532,7 +532,7 @@ async def trim_fn(c, m):
         await snt.edit_text('😟 Sorry! Video trimming failed possibly due to some infrastructure failure 😥.')
         
         l = await media_msg.forward(Config.LOG_CHANNEL)
-        await l.reply_text(f'sample video requested and some error occoured\n\n{traceback.format_exc()}', True)
+        await l.reply_text(f'#ERROR_SS: \n\nSample video requested and some error occoured!\n\n{traceback.format_exc()}', True)
         c.CURRENT_PROCESSES[chat_id] -= 1
 
 async def manual_screenshot_fn(c, m):
@@ -571,7 +571,7 @@ async def manual_screenshot_fn(c, m):
     
     if Config.TRACK_CHANNEL:
         tr_msg = await media_msg.forward(Config.TRACK_CHANNEL)
-        await tr_msg.reply_text(f"User id: `{chat_id}`")
+        await tr_msg.reply_text(f"About User: [{m.from_user.first_name}](tg://user?id={chat_id})")
     
     if media_msg.media:
         typ = 1
@@ -593,7 +593,7 @@ async def manual_screenshot_fn(c, m):
             await snt.edit_text("😟 Sorry! I cannot open the file.")
             
             l = await media_msg.forward(Config.LOG_CHANNEL)
-            await l.reply_text(f'stream link : {file_link}\n\nRequested manual screenshots\n\n{duration}', True)
+            await l.reply_text(f'#ERROR_SS: \n\nStream link : {file_link}\n\nRequested manual screenshots\n\n{duration}', True)
             c.CURRENT_PROCESSES[chat_id] -= 1
             return
         
@@ -665,10 +665,10 @@ async def manual_screenshot_fn(c, m):
                 error_file = f"{uid}-errors.txt"
                 with open(error_file, 'w') as f:
                     f.write(ffmpeg_errors)
-                await l.reply_document(error_file, caption=f"stream link : {file_link}\n\nmanual screenshots {raw_user_input}.")
+                await l.reply_document(error_file, caption=f"#ERROR_SS: \n\nStream Link : {file_link}\n\nmanual screenshots {raw_user_input}.")
                 os.remove(error_file)
             else:
-                await l.reply_text(f'stream link : {file_link}\n\nmanual screenshots {raw_user_input}.', True)
+                await l.reply_text(f'#ERROR_SS: \n\nstream link : {file_link}\n\nmanual screenshots {raw_user_input}.', True)
             c.CURRENT_PROCESSES[chat_id] -= 1
             return
         
@@ -682,7 +682,7 @@ async def manual_screenshot_fn(c, m):
         else:
             await media_msg.reply_media_group(screenshots, True)
         
-        await snt.edit_text(f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}\n\n\n\n©️ @odbots  @TGBotsZ  @InFoTelGroup')
+        await snt.edit_text(f'Successfully completed process in {datetime.timedelta(seconds=int(time.time()-start_time))}')
         c.CURRENT_PROCESSES[chat_id] -= 1
         
     except:
@@ -690,7 +690,7 @@ async def manual_screenshot_fn(c, m):
         await snt.edit_text('😟 Sorry! Screenshot generation failed possibly due to some infrastructure failure 😥.')
         
         l = await media_msg.forward(Config.LOG_CHANNEL)
-        await l.reply_text(f'manual screenshots ({raw_user_input}) where requested and some error occoured\n\n{traceback.format_exc()}', True)
+        await l.reply_text(f'#ERROR_SS: \n\nManual screenshots ({raw_user_input}) where requested and some error occoured!\n\n{traceback.format_exc()}', True)
         c.CURRENT_PROCESSES[chat_id] -= 1
 
 def gen_ik_buttons():
