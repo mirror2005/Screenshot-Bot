@@ -13,7 +13,7 @@ async def _(c, m):
         await c.db.add_user(m.chat.id)
         await c.send_message(
             Config.LOG_CHANNEL,
-            f"New User [{m.from_user.first_name}](tg://user?id={m.chat.id}) started."
+            f"#PING_SS: \n\nNew User [{m.from_user.first_name}](tg://user?id={m.chat.id}) started!"
         )
     
     if not m.reply_to_message.reply_markup:
