@@ -25,7 +25,7 @@ async def _(c, m):
         await c.db.add_user(chat_id)
         await c.send_message(
             Config.LOG_CHANNEL,
-            f"New User [{m.from_user.first_name}](tg://user?id={chat_id}) started."
+            f"#PING_SS: \n\nNew User [{m.from_user.first_name}](tg://user?id={chat_id}) started."
         )
     
     ban_status = await c.db.get_ban_status(chat_id)
@@ -42,7 +42,7 @@ async def _(c, m):
     if not is_url(m.text):
         return
 
-    snt = await m.reply_text("Hi there, Please wait while I'm getting everything ready to process your request!", quote=True)
+    snt = await m.reply_text("Please wait while I'm getting everything ready to process your request!", quote=True)
 
     duration = await get_duration(m.text)
     if isinstance(duration, str):
@@ -57,6 +57,6 @@ async def _(c, m):
         btns.append([InlineKeyboardButton('Generate Sample Video!', 'smpl')])
     
     await snt.edit_text(
-        text=f"Hi, Choose one of the options.\n\nTotal duration: `{datetime.timedelta(seconds=duration)}` (`{duration}s`)",
+        text=f"Choose one of the options.\n\nTotal duration: `{datetime.timedelta(seconds=duration)}` (`{duration}s`)",
         reply_markup=InlineKeyboardMarkup(btns)
     )
