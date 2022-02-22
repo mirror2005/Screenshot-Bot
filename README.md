@@ -1,16 +1,19 @@
-# [ScreenShot Bot](https://tx.me/ScreenShotTGBot)
+# Screenshort bot
 > Telegram Bot For Screenshot Generation.
 
 ## Description
 
-An attempt to implement the screenshot generation of telegram files without downloading the entire file. Live version can be found here [@ScreenShot Bot](https://tx.me/ScreenShotTGBot).
+An attempt to implement the screenshot generation of telegram files without downloading the entire file. Live version can be found here [Bot](https://t.me/jetbots).
 > Screenshot Generation with Custom Watermark---Sample Video Generation---Trim video.
 
 ## Installation Guide
 
 ### You can also tap the Deploy To Heroku button below to deploy straight to Heroku!
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/TGExplore/Screenshot-Bot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/mirror2005/Screenshot-Bot)
+
+Heroku Deploy Is banned by heroku
+so use workflow to deploy
 
 ### Watch our YouTube video for more details - [Telegram Screenshot | Trim | Sample Video Generator Bot](https://youtu.be/Fsc-ZUvdO20)
 
@@ -93,9 +96,13 @@ In bot settings.
 Contributions are welcome.
 
 ## Contact
-You can contact me [@InFoTelGroup](https://tx.me/InFoTelGroup).
+You can contact me [Jettastic](https://tx.me/jettastic).
+Join Our Channel For All Other Cool Repo And Bots [Jetbots](https://tx.me/jetbots)
+Our Other BOTS [bOTS](https://t.me/jETBOTS/26)
 
 ## Thanks
+
+Thanks To [Jettastic](https://t.me/jettastic) For Adiing Workflow And Fixing Errors And Bugs
 
 Thanks to [@odysseusmax](https://tx.me/odysseusmax) for his [animated-lamp](https://github.com/odysseusmax/animated-lamp) Bot.
 
