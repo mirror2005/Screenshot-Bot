@@ -1,0 +1,31 @@
+name: Manually Deploy to Heroku
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_heroku_process_type: web
+          stack: "container"
+          region: "us"
+        env:
+          HD_API_ID: ${{secrets.API_ID}}
+          HD_API_HASH: ${{secrets.API_HASH}}
+          HD_BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+          HD_SESSION_NAME: ${{secrets.SESSION_NAME}}
+          HD_LOG_CHANNEL: ${{secrets.LOG_CHANNEL}}
+          HD_DATABASE_URL: ${{secrets.DATABASE_URL}}
+          HD_AUTH_USERS: ${{secrets.AUTH_USERS}}
+          HD_HOST: ${{secrets.HOST}}
+          HD_MAX_PROCESSES_PER_USER: ${{secrets.MAX_PROCESSES_PER_USER}}
+          HD_MAX_TRIM_DURATION: ${{secrets.MAX_TRIM_DURATION}}
+          HD_TRACK_CHANNEL: ${{secrets.TRACK_CHANNEL}}
+          HD_SLOW_SPEED_DELAY: ${{secrets.SLOW_SPEED_DELAY}}
