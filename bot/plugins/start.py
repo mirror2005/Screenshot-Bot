@@ -17,7 +17,7 @@ async def start(c, m):
             if user.status == "kicked":
                 await c.send_message(
                    chat_id=m.chat.id,
-                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/linux_repo).",
+                   text="Sorry Sir, You are Banned to use me. Contact my [Developer/Owner](https://t.me/jettastic).",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                 )
@@ -39,7 +39,7 @@ async def start(c, m):
         except Exception:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+                text="Something went Wrong. Contact my [Developer/Owner](https://t.me/jettastic).",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
@@ -58,11 +58,12 @@ async def start(c, m):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('Updates Channel', url='https://t.me/Discovery_Updates'),
-                    InlineKeyboardButton('Support Group', url='https://t.me/linux_repo')
+                    InlineKeyboardButton('Updates Channel', url='https://t.me/jetbots'),
+                    InlineKeyboardButton('Developer/Owner', url='https://t.me/jettastic')
                 ],
                 [
-                    InlineKeyboardButton('Developer', url='https://t.me/AbirHasan2005')
+                    InlineKeyboardButton('Our Other Bots', url='https://t.me/jetbots/26')
+                    InlineKeyboardButton('Leech/Mirror/Encoding Groups', url='https://t.me/jetbots/26')
                 ]
             ]
         )
