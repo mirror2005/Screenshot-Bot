@@ -17,7 +17,7 @@ async def start(c, m):
             if user.status == "kicked":
                 await c.send_message(
                    chat_id=m.chat.id,
-                   text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/linux_repo).",
+                   text="Sorry Sir, You are Banned to use me. Contact my [Channel](https://t.me/jetbots).",
                    parse_mode="markdown",
                    disable_web_page_preview=True
                 )
@@ -39,7 +39,7 @@ async def start(c, m):
         except Exception:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="Something went Wrong. Contact my [Support Group](https://t.me/linux_repo).",
+                text="Something went Wrong. Contact my [Channel](https://t.me/jetbots).",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
